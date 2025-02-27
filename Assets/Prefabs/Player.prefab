@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2970918040026444160}
   - component: {fileID: -7407009693317946668}
-  - component: {fileID: 7729209258875205907}
+  - component: {fileID: 8710836024911827280}
+  - component: {fileID: 5827198853785400809}
+  - component: {fileID: 6712660703289333124}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -28,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8169229982036618978}
   m_Father: {fileID: 0}
@@ -59,7 +61,7 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
---- !u!114 &7729209258875205907
+--- !u!114 &8710836024911827280
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -68,23 +70,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 8786847590917204440}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Script: {fileID: 11500000, guid: 64521b921a92ac741bbc465e143d9cb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  NetworkTransformExpanded: 0
+  NetworkTransformExpanded: 1
   AuthorityMode: 0
   TickSyncChildren: 0
   UseUnreliableDeltas: 0
   SyncPositionX: 1
   SyncPositionY: 1
   SyncPositionZ: 1
-  SyncRotAngleX: 1
-  SyncRotAngleY: 1
-  SyncRotAngleZ: 1
-  SyncScaleX: 1
-  SyncScaleY: 1
-  SyncScaleZ: 1
+  SyncRotAngleX: 0
+  SyncRotAngleY: 0
+  SyncRotAngleZ: 0
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
   PositionThreshold: 0.001
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
@@ -95,6 +97,40 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!114 &5827198853785400809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8786847590917204440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b22fc07e563d45a6e8aab7cbd9963, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  _inputReader: {fileID: 11400000, guid: 85bbe66574e82a7428dd3361494a1e33, type: 2}
+  _weaponTransform: {fileID: 0}
+  _rb: {fileID: 0}
+  _movementSpeed: 1
+  _weaponTurn: 0
+--- !u!114 &6712660703289333124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8786847590917204440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4eaa310836b4404fbc43ff2d73024e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
+  bulletPrefab: {fileID: 4859368570410089880, guid: 24eea9329e7ffc14f9bfe2a1972fb24c, type: 3}
+  firePoint: {fileID: 2970918040026444160}
+  bulletSpeed: 5
 --- !u!1001 &3531853827894199083
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -153,14 +189,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8316402779051580184, guid: 66d06955add7a4a43b42d57062b569ea, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2409886884187829347}
+      addedObject: {fileID: 6159210133108079401}
   m_SourcePrefab: {fileID: 100100000, guid: 66d06955add7a4a43b42d57062b569ea, type: 3}
 --- !u!1 &4785749824014915635 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8316402779051580184, guid: 66d06955add7a4a43b42d57062b569ea, type: 3}
   m_PrefabInstance: {fileID: 3531853827894199083}
   m_PrefabAsset: {fileID: 0}
---- !u!50 &2409886884187829347
+--- !u!50 &6159210133108079401
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
@@ -168,14 +204,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4785749824014915635}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -186,7 +222,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!4 &8169229982036618978 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4637939310262201801, guid: 66d06955add7a4a43b42d57062b569ea, type: 3}
