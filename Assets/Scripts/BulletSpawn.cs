@@ -12,7 +12,7 @@ public class BulletSpawn : NetworkBehaviour
     {
         if (IsOwner && Input.GetMouseButtonDown(0)) 
         {
-            Debug.Log($"Fire");
+            // Debug.Log($"Fire");
             Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             SpawnBulletServerRpc(targetPosition);
         }

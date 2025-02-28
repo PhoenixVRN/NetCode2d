@@ -1,21 +1,41 @@
+using TMPro;
 using UnityEngine;
+using Unity.Netcode;
 
-public class Test : MonoBehaviour
+public class Test : NetworkBehaviour
 {
-    [SerializeField] private InputReader _inputReader;
-
-    private void Start()
+    public TextMeshProUGUI text;
+    public NetworkVariable<int> health = new NetworkVariable<int>(100, NetworkVariableReadPermission.Everyone, 
+        NetworkVariableWritePermission.Server);
+    void Start()
     {
-        _inputReader.MoveEvent += HandleMove;
+        // Подписываемся на событие изменения значения
+        health.OnValueChanged += OnHealthChanged;
     }
 
-    private void HandleMove(Vector2 move)
+    void OnHealthChanged(int oldValue, int newValue)
     {
-        Debug.Log($"move {move}");
+        Debug.Log($"Health changed from {oldValue} to {newValue}");
+        text.text = newValue.ToString();
     }
 
-    private void OnDestroy()
+    public void Set1()
     {
-        _inputReader.MoveEvent -= HandleMove;
+        SetValueServerRpc();
     }
+    [ServerRpc(RequireOwnership = false)]
+    private void SetValueServerRpc()
+    {
+        health.Value -= 10;
+    }
+    // void Update()
+    // {
+    //     if (IsServer) // Только сервер может изменять значение
+    //     {
+    //         if (Input.GetKeyDown(KeyCode.Space))
+    //         {
+    //             health.Value -= 10; // Уменьшаем здоровье на 10
+    //         }
+    //     }
+    // }
 }
