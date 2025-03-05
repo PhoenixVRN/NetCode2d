@@ -11,6 +11,5 @@ public class JoinServer : MonoBehaviour
   public void StartHost()
   {
     NetworkManager.Singleton.StartHost();
-    NetworkManager.Singleton.StartHost();
   }
 }

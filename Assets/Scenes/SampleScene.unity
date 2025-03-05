@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 43153998}
   - component: {fileID: 43153997}
   - component: {fileID: 43153996}
+  - component: {fileID: 43153999}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -238,9 +239,9 @@ MonoBehaviour:
   m_MaxConnectAttempts: 60
   m_DisconnectTimeoutMS: 30000
   ConnectionData:
-    Address: 109.195.51.60
-    Port: 80
-    ServerListenAddress: 127.0.0.1
+    Address: 127.0.0.01
+    Port: 7777
+    ServerListenAddress: 0.0.0.0
   DebugSimulator:
     PacketDelayMS: 0
     PacketJitterMS: 0
@@ -302,6 +303,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &43153999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43153995}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 375f5c8407e525f4ca2eb3305794704a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &438488817
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,7 +845,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &663285257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -840,7 +853,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 663285256}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
@@ -865,7 +878,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 663285256}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2056558b15b2c84291ad13daf2fc62d, type: 3}
   m_Name: 
@@ -1027,7 +1040,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.009000001, y: 0.83000004}
   m_AnchorMax: {x: 0.35915318, y: 0.8764815}
-  m_AnchoredPosition: {x: -3.0000305, y: 0}
+  m_AnchoredPosition: {x: -3.000061, y: 0}
   m_SizeDelta: {x: 4, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1416100692
