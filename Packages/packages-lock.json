@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.fireworkeyes.netcode.transport.promul": {
+      "version": "https://github.com/jacksonrakena/Promul.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "9dd46438542920e0ee9b62de33bddf71570c05a6"
+    },
     "com.unity.2d.animation": {
       "version": "10.1.4",
       "depth": 1,
