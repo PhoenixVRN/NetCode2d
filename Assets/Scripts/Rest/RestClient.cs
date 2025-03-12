@@ -1,5 +1,6 @@
 using System.Collections;
 using Newtonsoft.Json;
+using Promul.Runtime.Unity;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -7,10 +8,12 @@ using UnityEngine.Networking;
 public class RestClient : MonoBehaviour
 {
     [SerializeField] private string _url = "http://109.195.51.60/";
+    [SerializeField] private CustomPromulTransport _promulTransport;
     public TMP_InputField inputField;
     public TextMeshProUGUI joinCode;
     public TextMeshProUGUI relayAddres;
     public TextMeshProUGUI relayPort;
+    
     public void Create() => StartCoroutine(Create_Coroutine()); //TODO
     public void Join() => StartCoroutine(Join_Coroutine());
 
@@ -29,6 +32,7 @@ public class RestClient : MonoBehaviour
             Debug.Log("Успех: " + request.downloadHandler.text);
             MyResponseObject responseObject =
                 JsonConvert.DeserializeObject<MyResponseObject>(request.downloadHandler.text);
+            _promulTransport.NameRoom = responseObject.joinCode;
             joinCode.text = responseObject.joinCode;
             relayAddres.text = responseObject.relayAddress;
             relayPort.text = responseObject.relayPort.ToString();
@@ -43,6 +47,7 @@ public class RestClient : MonoBehaviour
     IEnumerator Join_Coroutine()
     {
         var dataToSend = inputField.text != "" ? inputField.text : "TEST";
+        Debug.Log($"Join_Coroutine {dataToSend}");
         JoinCodeData data = new JoinCodeData {joinCode = dataToSend};
         string json = JsonUtility.ToJson(data);
         byte[] postData = System.Text.Encoding.UTF8.GetBytes(json);
@@ -55,6 +60,7 @@ public class RestClient : MonoBehaviour
             Debug.Log("Успех: " + request.downloadHandler.text);
             MyResponseObject responseObject =
                 JsonConvert.DeserializeObject<MyResponseObject>(request.downloadHandler.text);
+            _promulTransport.NameRoom = responseObject.joinCode;
             joinCode.text = responseObject.joinCode;
             relayAddres.text = responseObject.relayAddress;
             relayPort.text = responseObject.relayPort.ToString();
