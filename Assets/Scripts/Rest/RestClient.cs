@@ -7,12 +7,16 @@ using UnityEngine.Networking;
 public class RestClient : MonoBehaviour
 {
     [SerializeField] private string _url = "http://109.195.51.60/";
+    public TMP_InputField inputField;
+    public TextMeshProUGUI joinCode;
+    public TextMeshProUGUI relayAddres;
+    public TextMeshProUGUI relayPort;
+    public void Create() => StartCoroutine(Create_Coroutine()); //TODO
+    public void Join() => StartCoroutine(Join_Coroutine());
 
-    public void Create() => StartCoroutine(Create_Coroutine("TEST")); //TODO
-    public void Join() => StartCoroutine(Join_Coroutine("TEST"));
-
-    IEnumerator Create_Coroutine(string dataToSend)
+    IEnumerator Create_Coroutine()
     {
+        var dataToSend = inputField.text != "" ? inputField.text : "TEST";
         JoinCodeData data = new JoinCodeData {joinCode = dataToSend};
         string json = JsonUtility.ToJson(data);
         byte[] postData = System.Text.Encoding.UTF8.GetBytes(json);
@@ -25,6 +29,9 @@ public class RestClient : MonoBehaviour
             Debug.Log("Успех: " + request.downloadHandler.text);
             MyResponseObject responseObject =
                 JsonConvert.DeserializeObject<MyResponseObject>(request.downloadHandler.text);
+            joinCode.text = responseObject.joinCode;
+            relayAddres.text = responseObject.relayAddress;
+            relayPort.text = responseObject.relayPort.ToString();
         }
         else
         {
@@ -33,8 +40,9 @@ public class RestClient : MonoBehaviour
     }
 
 
-    IEnumerator Join_Coroutine(string dataToSend)
+    IEnumerator Join_Coroutine()
     {
+        var dataToSend = inputField.text != "" ? inputField.text : "TEST";
         JoinCodeData data = new JoinCodeData {joinCode = dataToSend};
         string json = JsonUtility.ToJson(data);
         byte[] postData = System.Text.Encoding.UTF8.GetBytes(json);
@@ -47,6 +55,9 @@ public class RestClient : MonoBehaviour
             Debug.Log("Успех: " + request.downloadHandler.text);
             MyResponseObject responseObject =
                 JsonConvert.DeserializeObject<MyResponseObject>(request.downloadHandler.text);
+            joinCode.text = responseObject.joinCode;
+            relayAddres.text = responseObject.relayAddress;
+            relayPort.text = responseObject.relayPort.ToString();
         }
         else
         {
