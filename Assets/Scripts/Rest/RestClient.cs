@@ -1,5 +1,6 @@
 using System.Collections;
 using Newtonsoft.Json;
+using Promul.Runtime.Unity;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -7,6 +8,7 @@ using UnityEngine.Networking;
 public class RestClient : MonoBehaviour
 {
     [SerializeField] private string _url = "http://109.195.51.60/";
+    [SerializeField] private PromulTransport _promulTransport;
     public TMP_InputField inputField;
     public TextMeshProUGUI joinCode;
     public TextMeshProUGUI relayAddres;
@@ -29,6 +31,7 @@ public class RestClient : MonoBehaviour
             Debug.Log("Успех: " + request.downloadHandler.text);
             MyResponseObject responseObject =
                 JsonConvert.DeserializeObject<MyResponseObject>(request.downloadHandler.text);
+            _promulTransport.NameRoom = responseObject.joinCode;
             joinCode.text = responseObject.joinCode;
             relayAddres.text = responseObject.relayAddress;
             relayPort.text = responseObject.relayPort.ToString();
@@ -55,6 +58,7 @@ public class RestClient : MonoBehaviour
             Debug.Log("Успех: " + request.downloadHandler.text);
             MyResponseObject responseObject =
                 JsonConvert.DeserializeObject<MyResponseObject>(request.downloadHandler.text);
+            _promulTransport.NameRoom = responseObject.joinCode;
             joinCode.text = responseObject.joinCode;
             relayAddres.text = responseObject.relayAddress;
             relayPort.text = responseObject.relayPort.ToString();
